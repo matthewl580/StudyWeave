@@ -1,0 +1,15 @@
+{
+  "name": "StudyWeave",
+  "short_name": "StudyWeave",
+  "theme_color": "#26306e",
+  "background_color": "#26306e",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+   "icons": [
+        {
+            "src": "https://cdn.glitch.global/930d3be6-c667-4ce7-99e2-b129dd9b79b2/noBgColor%20(2).png?v=1737682178816",
+            "sizes": "120x120"
+        }
+    ]
+}
