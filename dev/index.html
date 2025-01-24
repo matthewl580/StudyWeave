@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Quickly add Sets</title>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/Global/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script
+      src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"
+      defer
+    ></script>
+    <script src="/Global/script.js" defer></script>
+    <script src="/Global/firebase.js" type="module" defer></script>
+    <script type="module">
+      import {
+        userInfo,
+        getData,
+        setData,
+        getGlobalData,
+        setGlobalData,
+      } from "/Global/firebase.js";
+      function quickAdd() {
+        console.log(2);
+        let SetData = JSON.parse(
+          document.getElementById("quickAddInput").value
+        );
+        let setDetails = {
+          title: SetData.title,
+          description: SetData.description,
+          category: SetData.category || "Psychology",
+          numQuestions: SetData.content.length,
+        };
+        console.log(SetData);
+        console.log(setDetails);
+        getGlobalData("Global Set Detail List.json", (globalSetList) => {
+          let SetList = JSON.parse(globalSetList);
+          console.log(SetList);
+          SetList.push(setDetails);
+          setGlobalData("Global Set Detail List.json", JSON.stringify(SetList));
+          setGlobalData(`${setDetails.title}.json`, JSON.stringify(SetData));
+          // window.location.assign("/viewset/index.html");
+        });
+      }
+      document
+        .querySelector("#quickAdd")
+        .addEventListener("click", function () {
+          quickAdd();
+        });
+    </script>
+    <!-- Importanting the icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body align="center">
+    <textarea id="quickAddInput" placeholder="Copy a string here"></textarea>
+    <button id="quickAdd" type="submit" style="width: 300px; height: 100px">
+      Quick Add
+    </button>
+  </body>
+</html>
